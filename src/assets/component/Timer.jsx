@@ -4,7 +4,10 @@ export default function Timer() {
   const [sec, setSec] = useState(0);
 
   useEffect(() => {
-    con;
+    const interval = setInterval(() => {
+      setSec((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

@@ -6,6 +6,8 @@ import Fieldinput from "./assets/component/Fieldinput";
 import MultiFieldInput from "./assets/component/MultiFieldInput";
 import UseEffectHook from "./assets/component/UseEffectHook";
 import Timer from "./assets/component/Timer";
+import StopTimer from "./assets/component/StopTimer";
+import APIUseeffect from "./assets/component/APIUseeffect";
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -55,6 +57,8 @@ export default function App() {
       <MultiFieldInput />
       <UseEffectHook />
       <Timer />
+      <StopTimer />
+      <APIUseeffect />
     </div>
   );
 }
