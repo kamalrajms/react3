@@ -1,64 +1,65 @@
-import React, { useState } from "react";
-import First from "./assets/component/First";
-import Second from "./assets/component/Second";
-import Darek from "./assets/component/Darek";
-import Fieldinput from "./assets/component/Fieldinput";
-import MultiFieldInput from "./assets/component/MultiFieldInput";
-import UseEffectHook from "./assets/component/UseEffectHook";
-import Timer from "./assets/component/Timer";
-import StopTimer from "./assets/component/StopTimer";
-import APIUseeffect from "./assets/component/APIUseeffect";
+import React, { useRef, useState, useEffect } from "react";
 
 export default function App() {
-  const [count, setCount] = useState(0);
-  //ternary operator
-  const [login, setLogin] = useState(false);
-  //list rendering
-  const fruits = ["apple", "banana", "mango"];
+  //ex1
+  const inputRef = useRef();
+  const handlefocus = () => {
+    console.log("hello");
+  };
+  //eg2
+  const [sec, setSec] = useState(0);
+  const inputTimer = useRef();
 
-  const user = [];
-  console.log(user.length);
+  useEffect(() => {
+    inputTimer.current = setInterval(() => {
+      setSec((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(inputTimer.current);
+  }, []);
 
+  //ex3
+  const [newProductImg, setnewProductImg] = useState(true);
+  const [imageUrl, setImageUrl] = useState("");
+  const inputImg = useRef();
+
+  const handleImgChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const preview = URL.createObjectURL(file);
+      setImageUrl(preview);
+      setnewProductImg(false);
+    }
+  };
   return (
     <div>
-      <h2>Count :{count}</h2>
-      <button onClick={() => setCount(count + 1)}>increse</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
-      <button onClick={() => setCount(0)}>reset</button>
-
-      {/* ternary ope */}
-
-      {login ? <p>Welcome in</p> : <p>Please login...</p>}
-      <button onClick={() => setLogin(!login)}>
-        {login ? "sign out" : "sign in"}
-      </button>
-      {login ? <First /> : <Second />}
-      {login && <Second />}
-      {login && <p>hello</p>}
-      <ul>
-        {fruits.map((e, ind) => (
-          <li key={ind}>{e}</li>
-        ))}
-      </ul>
-      {user.length > 0 ? (
-        <ul>
-          {user.map((e, ind) => (
-            <li key={ind}>
-              {e.name}
-              {e.id}
-            </li>
-          ))}
-        </ul>
+      {/* //eg1 */}
+      <input type="text" placeholder="Enter input" ref={inputRef} />
+      <button onClick={handlefocus}>click me</button>
+      {/* //eg2 */}
+      <h2>second :{sec}</h2>
+      <button onClick={() => clearInterval(inputTimer.current)}>Stop</button>
+      {/* //eg3 */}
+      {newProductImg ? (
+        <div className="image-box" onClick={() => inputImg.current.click()}>
+          upload image...
+        </div>
       ) : (
-        <p>no data found</p>
+        <img
+          src={imageUrl}
+          alt="image"
+          onClick={() => inputImg.current.click()}
+        />
       )}
-      <Darek />
-      <Fieldinput />
-      <MultiFieldInput />
-      <UseEffectHook />
-      <Timer />
-      <StopTimer />
-      <APIUseeffect />
+      <input
+        type="file"
+        accept="image/*"
+        ref={inputImg}
+        onClick={handleImgChange}
+        hidden
+      />
+      {/* <input type="range" />
+      <input type="time" />
+      <input type="color" /> */}
     </div>
   );
 }
