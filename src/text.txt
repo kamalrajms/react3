@@ -116,6 +116,7 @@ Why do we need React?
 				//code
 			},[dependencies])
 
+09/09/2025
 	
 	## useRef()
 
@@ -149,3 +150,18 @@ Why do we need React?
 			dispatch= a function to tell the reducer what to do
 			reducerFunction(state,action) = the logic that return a new state
 			initalvalue = starting value
+
+
+		## Usecallback
+
+		it's a react hook ,Every time a Component re-rendering
+		it creates a brand new copy of every function inside it.
+
+		even if the function code looks exactly the same
+
+			1) unnecessarly child re-renders
+			2) useEffect developers issues
+
+		const varablesName= Usecallback(()=>{
+			//code
+		},[])
