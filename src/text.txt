@@ -165,3 +165,33 @@ Why do we need React?
 		const varablesName= Usecallback(()=>{
 			//code
 		},[])
+
+	
+	## Routing DOM
+
+		Routing means navigating b/w different pages in a web app without refreshing
+		the browser in traditional websites ,clicking a link reloads the whole page
+
+		in react (SAP) ,routing lets us changes the view without reloading
+		 uses
+		 	better performances
+			smooth user experiancte
+			control over navigation without server request
+
+		npm install react-route-dom
+
+			<BrowserRouter>
+      		<Routes>
+        		<Route/>
+			</Routes>
+			</BrowserRouter>
+
+		## nested Routing
+	
+	## useNavigate
+
+		it navigate to any other pages
+		
+	## useParams
+
+
