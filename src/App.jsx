@@ -5,8 +5,7 @@ import About from "./component/About";
 import Service from "./component/Service";
 import Contact from "./component/Contact";
 import Header from "./component/Header";
-import Web from "./component/service/Web";
-import AppDEv from "./component/service/AppDEv";
+import BlogDetail from "./component/BlogDetail";
 
 export default function App() {
   return (
@@ -17,11 +16,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
-          <Route path="/services" element={<Service />}>
-            <Route path="" element={<Web />} />
-            <Route path="Appdev" element={<AppDEv />} />
-          </Route>
+          <Route path="/services" element={<Service />} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/BLogDetails/:id" element={<BlogDetail />} />
         </Routes>
       </BrowserRouter>
     </div>
